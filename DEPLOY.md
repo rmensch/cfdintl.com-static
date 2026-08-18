@@ -135,3 +135,33 @@ Once you are confident, the AWS instance at `54.201.74.233` can be shut down. It
 is the only reason the Django app, its end-of-life Django 1.11 stack, and its
 hosting cost still exist. Nothing else depends on it — but confirm the box is
 not also doing something unrelated before you terminate it.
+
+### Credentials to rotate
+
+The old Django project at `~/code/cfdintl.com` holds live secrets in plaintext,
+and the AWS box is still running with them. Shutting the box down does not
+invalidate them — rotate each one at its source.
+
+- **SMTP password** for the `cfdintl@cfdintl.com` mailbox — `project/settings.py`,
+  in `EMAIL_HOST_PASSWORD`. Change it in Google Workspace. If it turns out to be
+  the account password rather than an app password, treat it as urgent.
+- **Google reCAPTCHA secret key** — hardcoded into a request URL in
+  `website/views.py`. Delete or regenerate the key pair in the reCAPTCHA admin
+  console. The static site no longer uses reCAPTCHA at all.
+- **Django `SECRET_KEY`** — `project/settings.py`. Only matters while the app is
+  running; retiring the box closes it out.
+
+Nothing above is present in this repo — the static site carries no credentials.
+
+### Email hardening
+
+SPF is in place. Two gaps remain, neither of which affects the website:
+
+- **DKIM** — generate in Google Workspace admin under Apps → Google Workspace →
+  Gmail → *Authenticate email*, then publish the TXT record it gives you at
+  Namecheap on host `google._domainkey`.
+- **DMARC** — a TXT record on `_dmarc`, starting in monitor-only mode:
+  `v=DMARC1; p=none; rua=mailto:<an address you read>`
+
+SPF on its own is weak. DKIM plus DMARC is what actually stops someone sending
+mail as cfdintl.com.
