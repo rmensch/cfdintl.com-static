@@ -1,0 +1,408 @@
+
+@font-face {
+    font-family: 'Black Ops One';
+    src: url('/static/fonts/BlackOpsOne-Regular.ttf');
+}
+
+:root {
+    --cfd-red: #BB171D;
+}
+
+a {
+    color: var(--cfd-red);
+}
+
+b {
+    font-weight: 800;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #777;
+    margin: 51px auto 60px auto;
+}
+
+div.subnav {
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+div.subnav .navbar-fixed-top {
+    top: 52px
+}
+
+dt {
+    font-weight: 800;
+}
+
+h1, h2 {
+    font-family: 'Black Ops One', cursive;
+}
+
+h3 {
+    font-weight: 700;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+li a:hover {
+    color: var(--cfd-red);
+}
+
+nav li a, .dropdown-menu > li > a {
+    font-size: 16px;
+    color: #777;
+}
+
+p.red {
+    color: var(--cfd-red);
+}
+
+table.comparison > tbody > tr > td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* First column*/
+table.comparison td:nth-of-type(1) {
+    background-color: #f8f8f8;
+    font-weight: 800;
+    text-align: left;
+}
+
+/* First row*/
+table.comparison tr:first-child {
+    background-color: #f8f8f8;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+table.comparison ul {
+    padding-left: 20px;
+    text-align: left;
+}
+
+ul {
+    list-style-position: outside;
+}
+
+.aside {
+    border: solid 3px;
+    margin-top: 15px;
+    padding: 0 15px;
+}
+
+.aside ul {
+    padding-left: 15px;
+}
+
+.banner {
+    text-align: center;
+    color: var(--cfd-red);
+}
+
+.carousel-indicators li {
+    border: 1px solid var(--cfd-red);
+}
+
+.carousel-indicators .active {
+    background-color: var(--cfd-red);
+}
+
+.carousel-inner .item img {
+    height: 45vh;
+    width: auto;
+    margin: 0 auto;
+}
+
+/* Start of "Micro clearfix" */
+.cf {
+    zoom: 1;
+}
+
+.cf:before,
+.cf:after {
+    content: "";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+/* End of "Micro clearfix" */
+
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.content-spacer-top {
+    height: 20px;
+}
+
+.dl-horizontal dd {
+    margin-bottom: 16px;
+}
+
+.dropdown-menu > li > h2 {
+    padding: 3px 20px;
+}
+
+.dropdown-menu .divider{
+    background-color: grey;
+}
+
+.fa:hover {
+    text-decoration: none;
+}
+
+.fa-facebook-square {
+    color: #3B5998;
+}
+
+.fa-facebook-square:hover {
+    color: #3B5998;
+}
+
+.fa-linkedin-square {
+    color: #007bb5;
+}
+
+.fa-linkedin-square:hover {
+    color: #007bb5;
+}
+
+.fa-twitter-square {
+    color: #55ACEE;
+}
+
+.fa-twitter-square:hover {
+    color: #55ACEE;
+}
+
+.fa-youtube-play:hover {
+    color: white;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+.glyphicon-ok {
+    color: #8BC63E;
+}
+
+.glyphicon-remove {
+    color: var(--cfd-red);
+}
+
+.img-md {
+    text-align: center;
+}
+
+.img-md img {
+    margin-bottom: 15px;
+}
+
+.img-padding {
+    padding: 0 5vw;
+}
+
+.in {
+    z-index: 99999;
+}
+
+.navbar-brand {
+    margin-top: -5px;
+}
+
+.navbar-brand-custom {
+    padding: 0 15px;
+}
+
+.navbar-collapse.in .dropdown-menu{
+    border-top: 1px solid grey !important;
+    border-bottom: 1px solid grey !important;
+}
+
+.navbar-collapse a, .dropdown.open a, .dropdown.open a:hover,
+.navbar-collapse h2 {
+    background-color: transparent !important;
+    color: #ddd !important;
+}
+
+.navbar-custom {
+    border-bottom: 2px solid var(--cfd-red);
+    margin-bottom: 0;
+    box-shadow: none;
+}
+
+.navbar-fixed-top {
+    background-color: #222;
+}
+
+.navbar-fixed-top .dropdown-menu{
+    background-color: #222 !important;
+}
+
+.products_ul {
+    border-left: 3px solid var(--cfd-red);
+    padding-right: 25px;
+    min-width: 285px;
+}
+
+.subnav a {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.subnav nav.navbar-default {
+    background-color: white;
+    z-index: 1000;
+}
+
+.subnav .navbar-nav li {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+
+.subnav ul.nav li {
+    float: none;
+}
+
+.text-center {
+    vertical-align: middle;
+}
+
+.vertically-centered {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.vertically-spaced div {
+    margin-bottom: 30px;
+}
+
+#map {
+    margin-top: 70px;
+}
+
+#products_subnav {
+    display: none;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-bottom: 1px solid var(--cfd-red);
+    top: 52px;
+    width: 100%;
+}
+
+#products_subnav a:hover {
+    border-right: 3px solid var(--cfd-red);
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--cfd-red);
+    border-radius: 10px;
+}
+
+@media (max-width: 990px) {
+
+    body {
+        font-size: small;
+    }
+
+    h1, h2 {
+        font-size: large;
+    }
+
+    .container .text-muted {
+        margin-bottom: 0;
+    }
+
+    .subnav ul {
+        display: flex;
+        align-items: center;
+        overflow: visible;
+        overflow-x: scroll;
+    }
+
+    .thumbnails {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        margin-bottom: 10px;
+        overflow: scroll;
+    }
+
+    .thumbnails img {
+        margin-right: 15px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+}
+
+@media (min-width: 991px) {
+
+    footer .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .subnav h1 {
+        text-align: center;
+    }
+
+    .subnav ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+    }
+
+    .subnav .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .thumbnails {
+        display: flex;
+        align-items: left;
+        flex-direction: column;
+    }
+
+    .thumbnails img {
+        margin-bottom: 15px;
+    }
+
+    #icon-wrapper {
+        margin-left: 5px;
+    }
+}

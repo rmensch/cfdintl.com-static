@@ -1,0 +1,157 @@
+/*
+
+    *** NOT ALL CSS IS HERE ***
+
+    *** home_pageload_css.html for remainder of css ***
+
+*/
+
+h2 {
+    margin-bottom: 0 !important;
+}
+
+/* Remove padding of container for full-screen background photos */
+.container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.img-padding {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 0;
+}
+
+.img-padding a {
+    display: flex;
+    justify-content: center;
+}
+
+.img-padding > h2 {
+    text-align: center;
+}
+
+.img-padding img {
+    object-fit: contain;
+}
+
+.parallax-bottom {
+    height: 20vh
+}
+
+.parallax-mid {
+    height: 40vh
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: grey;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+@media (max-width: 767px) {
+
+    .footer > .container {
+        background-color: whitesmoke;
+    }
+
+    .icon-bar {
+        background-color: white !important;
+    }
+
+    .img-padding img {
+        width: 80vw !important;
+        height: 80vw !important;
+    }
+
+    .img-padding ul {
+        width: 100vw !important;
+        margin-bottom: 30px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .row {
+        background-color: white;
+    }
+
+    .img-padding h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 70px;
+        font-size: 22px;
+    }
+
+    .img-padding img {
+        width: 23vw;
+        height: 23vw;
+    }
+
+    .img-padding ul {
+        font-size: 10px;
+    }
+
+    .footer .container {
+        background-color: whitesmoke;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media (min-width: 990px) {
+
+    .img-padding h2 {
+        font-size: 26px;
+    }
+
+    .img-padding ul {
+        font-size: 14px;
+    }
+
+}
+
+@media (min-width: 1600px) {
+
+    .img-padding h2 {
+        font-size: 32px;
+    }
+
+    .img-padding ul {
+        font-size: 18px;
+    }
+
+    #service_note {
+        font-size: xx-large !important;
+        width: 70%;
+    }
+}
+
+@media (min-width: 2160px) {
+
+    .img-padding h2 {
+        font-size: 50px;
+    }
+
+    .img-padding ul {
+        font-size: 22px;
+    }
+
+    .navbar-fixed-top .container {
+        width: 80vw;
+    }
+
+    .row {
+        font-size: 20px;
+    }
+
+}
