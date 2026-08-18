@@ -103,7 +103,7 @@
 
                 <li class="not-prod"><a href="/about/">About</a></li>
 
-                <li class="not-prod"><a href="/contact/">Contact</a></li>
+                
             </ul>
         </div>
     </div>
@@ -218,6 +218,27 @@
     </div>
 </footer>
 
+<script>
+/* Offset page content below the fixed header.
+
+   project.css sets `body { margin-top: 51px }` to clear the fixed navbar.
+   The Supplier Change Notice banner was later added *inside* that navbar,
+   roughly doubling its height, but the 51px was never increased -- so page
+   headings slid underneath it on every page. Measuring the navbar at runtime
+   keeps this correct if the banner wraps to two lines on narrow screens, or
+   if the banner is removed later. */
+(function () {
+    function setOffset() {
+        var nav = document.querySelector('nav.navbar-fixed-top');
+        if (nav && nav.offsetHeight) {
+            document.body.style.marginTop = nav.offsetHeight + 'px';
+        }
+    }
+    setOffset();
+    window.addEventListener('load', setOffset);
+    window.addEventListener('resize', setOffset);
+})();
+</script>
 </body>
 
 

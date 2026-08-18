@@ -16,9 +16,9 @@ that reached end-of-life in April 2020.
 ## What this is
 
 Every page reachable by browsing the live site: the home page, 14 product pages
-and their sub-pages, About, Capabilities, Contact, and the Supplier Change
-Notice — 39 pages in all, plus stylesheets, images, video, and the linked PDF
-brochures and terms documents.
+and their sub-pages, About, Capabilities, and the Supplier Change Notice — 39
+pages in all, plus stylesheets, images, video, and the PDF brochures and terms
+documents.
 
 Pages that existed in the old codebase but were commented out of the navigation
 (`careers`, `affiliates`, `social_media`, `spares`) are **not** included; they
@@ -31,9 +31,13 @@ Contact details for CFD itself were removed at the owner's request:
 
 - **Footer, sitewide** — the phone number and email were replaced with a plain
   "CFD International" line, so the footer bar does not render empty.
-- **Contact page** — the email and phone headings were removed. The page keeps
-  its CAGE codes, DUNS numbers, terms-of-sale and terms-of-purchase PDFs, and
-  the seven product brochures.
+- **Contact page** — removed entirely, along with its navigation link. With the
+  email and phone gone there was nothing left on it but a documents panel, and
+  the owner asked for that to go too. Note this leaves the PDFs in
+  `static/docs/` unlinked from anywhere: the CAGE/DUNS details, the two terms
+  documents, and the seven product brochures are all still served, just no
+  longer reachable by browsing. Restore with `git revert` if that was not
+  intended.
 - **Supplier Change Notice** — the line *"Please send inquiries to
   cfdintl@cfdintl.com."* was removed, as it became a dead end. The new
   suppliers' own contact details further down that page are **unchanged**.
@@ -41,6 +45,19 @@ Contact details for CFD itself were removed at the owner's request:
   was already absent from production.
 
 No CFD phone number or email address remains anywhere in this repo.
+
+## One fix beyond the mirror
+
+`project.css` sets `body { margin-top: 51px }` to clear the fixed navbar. The
+Supplier Change Notice banner was later added *inside* that navbar, roughly
+doubling its height, but the 51px was never increased — so on every page the
+first heading sat underneath the header, half-hidden. This is broken on the
+live Django site today.
+
+Each page now carries a short script before `</body>` that measures the navbar
+and sets the body offset to match. Measuring at runtime rather than hard-coding
+a value keeps it correct when the banner wraps to two lines on a narrow screen,
+and it self-corrects if the banner is ever removed.
 
 ## Editing
 
