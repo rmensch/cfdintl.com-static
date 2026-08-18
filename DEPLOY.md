@@ -5,20 +5,40 @@ Phase 1 is safe and reversible. Phase 2 is the live cutover.
 
 ---
 
-## Phase 1 — Publish to GitHub Pages
+## Phase 1 — Publish to GitHub Pages ✅ already done
 
-The repo is already created and pushed. To turn on hosting:
+The repo is created, pushed, and GitHub Pages is enabled:
 
-1. Go to **https://github.com/rmensch/cfdintl.com-static/settings/pages**
-2. Under **Build and deployment → Source**, choose **Deploy from a branch**
-3. Branch: **main**, folder: **/ (root)**, then **Save**
-4. Under **Custom domain**, enter `cfdintl.com` and **Save**
+- Repo: https://github.com/rmensch/cfdintl.com-static (public)
+- Source: branch `main`, folder `/` (root)
+- Custom domain: `cfdintl.com` (from the `CNAME` file in this repo)
 
-GitHub will report *"Domain's DNS record could not be verified"* — expected until
-Phase 2. The site is live in the meantime at the temporary URL Pages shows you.
+Nothing to do here. You can confirm at
+**https://github.com/rmensch/cfdintl.com-static/settings/pages**, where GitHub
+will show *"Domain's DNS record could not be verified"* — that is expected and
+correct until Phase 2, because `cfdintl.com` still points at the old AWS server.
 
-> The repo already contains a `CNAME` file with `cfdintl.com`, so step 4 may be
-> pre-filled. Leave it as is.
+The live site is untouched so far. Phase 2 is the only step that changes it.
+
+---
+
+## Pre-flight — test the new site before touching DNS
+
+You can confirm GitHub is serving the real site *before* the cutover, by asking
+GitHub's servers directly for `cfdintl.com` without changing where the domain
+points. Nothing about the live site changes when you run this:
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' -H 'Host: cfdintl.com' http://185.199.108.153/
+```
+
+`200` means GitHub is serving your site and the cutover is safe. To eyeball it
+in a browser, temporarily add this line to `/etc/hosts` on your Mac, visit
+http://cfdintl.com, then delete the line when you are done:
+
+```
+185.199.108.153  cfdintl.com
+```
 
 ---
 
