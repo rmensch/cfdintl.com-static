@@ -29,63 +29,76 @@ Then open http://localhost:8080.
 
 ---
 
-## Phase 2 — Re-point DNS at GoDaddy
+## Phase 2 — Re-point DNS (at Namecheap)
 
-Your nameservers are `ns29/ns30.domaincontrol.com` (GoDaddy). Manage records at
-**https://dcc.godaddy.com/control/portfolio/cfdintl.com/settings** → *DNS*.
+The domain is being transferred from GoDaddy to Namecheap. **Do not start this
+phase until the transfer has completed and DNS is confirmed working on
+Namecheap's nameservers.** Changing nameservers mid-transfer can disrupt it.
 
-### ⚠️ Do not touch the MX records
+### ⚠️ A registrar transfer does not carry your DNS records
 
-`cfdintl.com` email runs on **Google Workspace** (`aspmx.l.google.com` plus the
-four `alt*` servers). Changing or deleting those stops company email. Touch only
-the `A` and `www` records below. Leave everything else — MX, TXT, SPF, DKIM,
-domain-verification records — exactly as it is.
+Only the registration moves. GoDaddy stops answering DNS for domains that leave,
+so every record has to be recreated at Namecheap — including several that have
+nothing to do with this website:
 
-### Optional: lower the TTL a day ahead
+- **`MX` — Google Workspace.** If these are missing when the nameservers flip,
+  all inbound company email bounces. Recreate these first and test them before
+  touching anything else.
+- **`vpn` and `remote`** — both point at the office IP.
+- **`dev`** — a second AWS server.
+- **`ftp`**.
 
-Set the TTL on the existing apex `A` record to **600 seconds** the day before.
-That makes a rollback take minutes instead of hours.
+A full snapshot of the zone as it stood on 2026-08-18, captured from GoDaddy's
+authoritative nameservers, is saved outside this repo at:
+
+    ~/Dropbox/_inbox/cfdintl.com DNS snapshot 2026-08-18.md
+
+It is deliberately not in this public repo, because it maps hostnames to the
+office IP.
+
+### Do the website cutover as a separate, later step
+
+Get the zone rebuilt at Namecheap with the *existing* values first, confirm
+email works, and only then make the two changes below. If something breaks you
+will know which change caused it.
 
 ### The changes
 
-**1. Delete the existing apex `A` record**
+**1. Apex `A` records** — replace the single record pointing at `54.201.74.233`
+with all four GitHub Pages addresses. All four; this is how Pages does failover.
 
-| Type | Name | Value | Action |
-|------|------|-------|--------|
-| A | @ | `54.201.74.233` | delete |
-
-**2. Add four new apex `A` records** — all four; this is how Pages does failover
-
-| Type | Name | Value |
+| Type | Host | Value |
 |------|------|-------|
 | A | @ | `185.199.108.153` |
 | A | @ | `185.199.109.153` |
 | A | @ | `185.199.110.153` |
 | A | @ | `185.199.111.153` |
 
-**3. Repoint `www`**
+**2. `www`** — currently a CNAME at `cfdintl.com`. Change its value to:
 
-It is currently a CNAME at `cfdintl.com`. Change its value to:
-
-| Type | Name | Value |
+| Type | Host | Value |
 |------|------|-------|
 | CNAME | www | `rmensch.github.io` |
 
 Note: `rmensch.github.io` — the account, **not** the repo name.
 
-### Verify propagation
+In Namecheap these live under *Domain List → Manage → Advanced DNS*. Namecheap
+uses `@` for the apex and its own TTL control (Automatic is fine).
+
+### Verify
 
 ```bash
 dig +short cfdintl.com
 ```
 
-You want the four `185.199.x.153` addresses. Then confirm email is intact:
+Expect the four `185.199.x.153` addresses. Then confirm email is untouched:
 
 ```bash
 dig +short MX cfdintl.com
 ```
 
-You want the five Google `aspmx` servers, unchanged.
+Expect the five Google `aspmx` servers. Send yourself a test message from an
+outside account before you consider this done.
 
 ---
 
@@ -111,7 +124,6 @@ the site locally afterwards, run `git pull` first so you do not clobber it.
 
 Delete the four `185.199.x.153` records, re-add a single apex `A` record
 pointing at `54.201.74.233`, and set `www` back to a CNAME at `cfdintl.com`.
-If you lowered the TTL first, this takes effect within minutes.
 
 Keep the old AWS box running until you have watched the new site for a few days.
 
