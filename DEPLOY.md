@@ -165,3 +165,19 @@ SPF is in place. Two gaps remain, neither of which affects the website:
 
 SPF on its own is weak. DKIM plus DMARC is what actually stops someone sending
 mail as cfdintl.com.
+
+**Status 2026-09-11:** SPF, DKIM and DMARC all published. Three and a half weeks
+of DMARC reports showed 361 forged messages from 218 IPs and zero legitimate
+outbound mail — the domain is receive-only and was being actively spoofed.
+DMARC moved to `p=reject`, SPF to `-all` (Google still authorised). Full
+analysis and a re-runnable parser live in `~/Dropbox/_inbox/`.
+
+### DNSSEC — enabled 2026-09-11
+
+Namecheap manages the keys and the DS record. **If DNS or the registrar ever
+moves again, switch DNSSEC off first and wait one to two days for the DS record
+to clear the `.com` registry before changing nameservers.** Moving a signed
+domain without unsigning it takes the domain — and email — offline until it is
+fixed. This is the single most common way DNSSEC bites.
+
+Verify it is live: `dig +short DS cfdintl.com` returns a record.
