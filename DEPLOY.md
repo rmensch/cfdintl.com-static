@@ -1,6 +1,9 @@
 # Deploying cfdintl.com
 
-Your live site is untouched until Phase 2. Everything before that is safe.
+> **Migration complete — 2026-08-18.** The site has been live on GitHub Pages
+> since then, DNS is on Namecheap, and the old AWS server is decommissioned.
+> What follows is the record of how it was done and the reference for DNS,
+> email and DNSSEC. Rollback to the old server is **no longer possible**.
 
 Order matters here: point DNS at GitHub **first**, then tell GitHub about the
 custom domain. Doing it the other way round is what GitHub's own docs warn
@@ -120,12 +123,13 @@ the site locally afterwards, run `git pull` first so you do not clobber it.
 
 ---
 
-## Rollback
+## Rollback — no longer available
+
+The AWS box at `54.201.74.233` was decommissioned in September 2026. The
+procedure below is kept for the record only.
 
 Delete the four `185.199.x.153` records, re-add a single apex `A` record
 pointing at `54.201.74.233`, and set `www` back to a CNAME at `cfdintl.com`.
-
-Keep the old AWS box running until you have watched the new site for a few days.
 
 ---
 
@@ -136,7 +140,10 @@ is the only reason the Django app, its end-of-life Django 1.11 stack, and its
 hosting cost still exist. Nothing else depends on it — but confirm the box is
 not also doing something unrelated before you terminate it.
 
-### Credentials to rotate
+### Credentials to rotate — decided not to (2026-09-11)
+
+Owner's decision: the site is gone, the mailbox is inactive and the server is
+decommissioned, so these are not being rotated. Listed for the record.
 
 The old Django project at `~/code/cfdintl.com` holds live secrets in plaintext,
 and the AWS box is still running with them. Shutting the box down does not
