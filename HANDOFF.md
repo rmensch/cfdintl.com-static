@@ -2,7 +2,7 @@
 
 **Last session:** 2026-09-11 — DMARC moved to reject after 24 days of reports showed 361 forgeries and zero legitimate mail; DNSSEC enabled and validated; old AWS server confirmed decommissioned. (Session began 2026-08-18 with the Django→static migration and registrar move.)
 **Status at close:** GREEN
-**Start here:** in ~2 weeks, drop new DMARC reports into `~/Dropbox/_inbox/dmarc/` and run `python3 dmarc_parse.py .` there — confirm forgery volume is falling and no `pass` entries appear.
+**Start here:** nothing scheduled. DMARC post-reject check done 2026-10-06 — enforcement confirmed, no legitimate mail affected.
 
 ## Done this session
 
@@ -19,7 +19,7 @@ Nothing.
 
 ## Next actions
 
-- **Re-check DMARC in ~2 weeks** — `cd ~/Dropbox/_inbox/dmarc && python3 dmarc_parse.py .` after adding new report zips. Expect forgeries trending down; any `pass` = first legitimate sender, worth knowing.
+- ~~Re-check DMARC~~ — done 2026-10-06: 191 forgeries rejected, 0 legitimate failures, volume down to ~5/day. No further reviews unless the domain starts sending mail.
 - **Decide on the "Contact Us" heading** — the page has no contact details now (CAGE/DUNS, terms PDFs, brochures only). Rename to "Company Information" or similar? One-line edit in `contact/index.html` plus the nav `<li>` on all 40 pages.
 - **Investigate DNS interception on the MacBook Pro** — every `dig @server` is answered by a Cloudflare resolver (108.162.x.x). Likely Cloudflare WARP or a router setting. Not urgent; DoH works around it. Noted in global CLAUDE.md.
 - **Bump `actions/*` versions** in `.github/workflows/pages.yml` when Node 24 releases land — GitHub is retiring Node 20 on runners. Cosmetic until then.
