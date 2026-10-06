@@ -54,7 +54,7 @@ nothing to do with this website:
 A full snapshot of the zone as it stood on 2026-08-18, captured from GoDaddy's
 authoritative nameservers, is saved outside this repo at:
 
-    ~/Dropbox/_inbox/cfdintl.com DNS snapshot 2026-08-18.md
+    "cfdintl.com DNS snapshot 2026-08-18.md" (Dropbox; originally _inbox, since filed)
 
 It is deliberately not in this public repo, because it maps hostnames to the
 office IP.
@@ -177,7 +177,8 @@ mail as cfdintl.com.
 of DMARC reports showed 361 forged messages from 218 IPs and zero legitimate
 outbound mail — the domain is receive-only and was being actively spoofed.
 DMARC moved to `p=reject`, SPF to `-all` (Google still authorised). Full
-analysis and a re-runnable parser live in `~/Dropbox/_inbox/`.
+analysis is in Rusty's Dropbox (summary note). Post-reject check on
+2026-10-06 confirmed enforcement with zero legitimate mail affected; closed.
 
 ### DNSSEC — enabled 2026-09-11
 

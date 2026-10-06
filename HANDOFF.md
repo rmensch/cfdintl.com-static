@@ -11,7 +11,7 @@
 - SPF `-all`, DKIM (selector `google`), DMARC `p=reject` — all live, verified via DNS-over-HTTPS
 - DNSSEC enabled, validated by Cloudflare and Google
 - Old AWS box `54.201.74.233` decommissioned; obsolete local dev-server files removed from `~/code/cfdintl.com`
-- Decision records: `docs/decisions/0001`, `0002`; `~/Dropbox/_inbox/2026-09-11 cfdintl.com domain and email decisions.md`
+- Decision records: `docs/decisions/0001`, `0002`; "2026-09-11 cfdintl.com domain and email decisions.md" (Dropbox; since filed)
 
 ## In flight
 

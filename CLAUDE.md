@@ -37,8 +37,8 @@ and that is expected. Preview locally with `python3 -m http.server 8080`.
 - MX is Namecheap's Gmail preset (legacy Google set, priorities 1/5/5/10/10).
   Works; leave it alone.
 - SPF `-all`, DKIM selector `google`, DMARC `p=reject`, DNSSEC on. Reports go
-  to administrator@cfdintl.com; parser and analysis in
-  `~/Dropbox/_inbox/dmarc/`.
+  to administrator@cfdintl.com. Enforcement confirmed 2026-10-06; reports are
+  no longer reviewed (summary note filed in Dropbox).
 - **If DNS or registrar ever moves: switch DNSSEC off first and wait 1–2 days
   before changing nameservers.** Details in `DEPLOY.md`.
 
