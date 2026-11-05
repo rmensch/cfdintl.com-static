@@ -179,6 +179,8 @@ outbound mail — the domain is receive-only and was being actively spoofed.
 DMARC moved to `p=reject`, SPF to `-all` (Google still authorised). Full
 analysis is in Rusty's Dropbox (summary note). Post-reject check on
 2026-10-06 confirmed enforcement with zero legitimate mail affected; closed.
+Reporting switched off 2026-11-05: the record is now `v=DMARC1; p=reject;`
+with no `rua` tag. Enforcement is unchanged; only the daily reports stop.
 
 ### DNSSEC — enabled 2026-09-11
 

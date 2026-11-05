@@ -36,9 +36,9 @@ and that is expected. Preview locally with `python3 -m http.server 8080`.
   Rows that "disappeared" were hidden, twice.
 - MX is Namecheap's Gmail preset (legacy Google set, priorities 1/5/5/10/10).
   Works; leave it alone.
-- SPF `-all`, DKIM selector `google`, DMARC `p=reject`, DNSSEC on. Reports go
-  to administrator@cfdintl.com. Enforcement confirmed 2026-10-06; reports are
-  no longer reviewed (summary note filed in Dropbox).
+- SPF `-all`, DKIM selector `google`, DMARC `p=reject` (no `rua`, so
+  no reports), DNSSEC on. Enforcement confirmed 2026-10-06; reporting switched
+  off 2026-11-05. To get reports again, add `rua=mailto:<address>` to `_dmarc`.
 - **If DNS or registrar ever moves: switch DNSSEC off first and wait 1–2 days
   before changing nameservers.** Details in `DEPLOY.md`.
 
